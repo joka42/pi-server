@@ -7,6 +7,11 @@ import subprocess
 WAIT_TIME = 5.0
 VERSION = 0.2
 
+def upgrade():
+    upgrade_process = subprocess.Popen(["git", "pull"])
+    update_process.communicate()
+
+
 while True:
     print("VERSION:", VERSION)
 
@@ -17,10 +22,14 @@ while True:
         print("Error: " + err)
         time.sleep(WAIT_TIME)
         continue
+    
     lines = out.splitlines(True)
     if len(lines) > 1:
         print("Update available")
-        print(out)
+        upgrade()
+        os.execv(sys.executable, ['python'] + sys.argv)
+        exit()
+        
     else:
         print("No update available")
     time.sleep(WAIT_TIME)
