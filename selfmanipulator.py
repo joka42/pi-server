@@ -10,6 +10,8 @@ VERSION = "0.3.3"
 def upgrade():
     upgrade_process = subprocess.Popen(["git", "pull"])
     upgrade_process.communicate()
+    with open("selfmanipulator.py", "r") as file:
+        print(file.readlines())
     return True
 
 
