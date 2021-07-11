@@ -7,10 +7,6 @@ import subprocess
 WAIT_TIME = 5.0
 VERSION = "0.3.4"
 
-def upgrade():
-
-
-
 while True:
     print("VERSION:", VERSION)
 
