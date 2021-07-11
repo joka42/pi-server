@@ -19,7 +19,8 @@ while True:
     
     out, err= update_process.communicate()
     if len(err):
-        print("Error: " + err)
+        print("Error: ")
+        print(err)
         time.sleep(WAIT_TIME)
         continue
     
