@@ -11,27 +11,20 @@ while True:
     print("VERSION:", VERSION)
 
     update_process = subprocess.Popen(["git", "remote", "update"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
     out, err = update_process.communicate()
-
-    lines = out.splitlines(True)
-
-    for line in lines:
-        print(line)
+    check_process = subprocess.Popen(["git", "status", "-uno"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    check, error = check_process.communicate()
     
-    if len(lines) > 2:
-        print("Update available")
-        upgrade_process = subprocess.Popen(["git", "pull"])
-        upgrade_process.communicate()
-        
-        #with open("selfmanipulator.py", "r") as file:
-            #print(file.readlines())
-        os.execv(sys.executable, ['python'] + sys.argv)
-        exit()
-        
-    else:
+    if "behind" not in check:
         print("No update available")
-    time.sleep(WAIT_TIME)
+        time.sleep(WAIT_TIME)
+        continue
+    
+    print("Update available")
+    upgrade_process = subprocess.Popen(["git", "pull"])
+    upgrade_process.communicate()    
+    os.execv(sys.executable, ['python'] + sys.argv)
+    exit()
     
 
 
