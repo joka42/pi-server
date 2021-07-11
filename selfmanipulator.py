@@ -17,10 +17,10 @@ while True:
         print("Error: " + err)
         time.sleep(WAIT_TIME)
         continue
-    
-    if len(out) > 1:
+    lines = out.split("\n")
+    if len(lines) > 1:
         print("Update available")
-        print(update_process.stdout)
+        print(out)
     else:
         print("No update available")
     time.sleep(WAIT_TIME)
