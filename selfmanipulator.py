@@ -5,10 +5,12 @@ import subprocess
 
 
 WAIT_TIME = 5.0
-
+VERSION = 0.1
 
 while True:
-    update_process = subprocess.Popen("git remote update")
+    print("VERSION:", VERSION)
+
+    update_process = subprocess.Popen(["git", "remote", "update"])
     
     update_process.communicate()
     if update_process.stderr:
@@ -16,7 +18,7 @@ while True:
         time.sleep(WAIT_TIME)
         continue
     
-    check_process = subprocess.Popen("git status -uno")
+    check_process = subprocess.Popen(["git", "status", "-uno"])
     if check_process.stderr:
         print("Error: " + check_process.stderr)
         time.sleep(WAIT_TIME)
