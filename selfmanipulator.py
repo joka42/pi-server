@@ -18,7 +18,12 @@ while True:
 
     update_process = subprocess.Popen(["git", "remote", "update"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     
-    out, err= update_process.communicate()
+    out, err = update_process.communicate()
+
+    print("out")
+    print(out)
+    print("err")
+    print(err)
     
     lines = out.splitlines(True)
     if len(lines) > 1:
@@ -27,7 +32,7 @@ while True:
             os.execv(sys.executable, ['python'] + sys.argv)
             exit()
         else:
-            print("Fail")
+            print("failed")
         
     else:
         print("No update available")
