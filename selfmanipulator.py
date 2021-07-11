@@ -5,7 +5,7 @@ import subprocess
 
 
 WAIT_TIME = 5.0
-VERSION = 0.1
+VERSION = 0.2
 
 while True:
     print("VERSION:", VERSION)
