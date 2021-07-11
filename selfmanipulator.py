@@ -5,7 +5,7 @@ import subprocess
 
 
 WAIT_TIME = 5.0
-VERSION = "0.3.1"
+VERSION = "0.3.2"
 
 def upgrade():
     upgrade_process = subprocess.Popen(["git", "pull"])
@@ -19,11 +19,6 @@ while True:
     update_process = subprocess.Popen(["git", "remote", "update"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     
     out, err= update_process.communicate()
-    if len(err):
-        print("Error: ")
-        print(err)
-        time.sleep(WAIT_TIME)
-        continue
     
     lines = out.splitlines(True)
     if len(lines) > 1:
