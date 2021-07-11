@@ -8,11 +8,7 @@ WAIT_TIME = 5.0
 VERSION = "0.3.4"
 
 def upgrade():
-    upgrade_process = subprocess.Popen(["git", "pull"])
-    upgrade_process.communicate()
-    with open("selfmanipulator.py", "r") as file:
-        print(file.readlines())
-    return True
+
 
 
 while True:
@@ -30,11 +26,12 @@ while True:
     lines = out.splitlines(True)
     if len(lines) > 1:
         print("Update available")
-        if upgrade():
-            os.execv(sys.executable, ['python'] + sys.argv)
-            exit()
-        else:
-            print("failed")
+        upgrade_process = subprocess.Popen(["git", "pull"])
+        upgrade_process.communicate()
+        with open("selfmanipulator.py", "r") as file:
+            print(file.readlines())
+        os.execv(sys.executable, ['python'] + sys.argv)
+        exit()
         
     else:
         print("No update available")
