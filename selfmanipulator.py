@@ -15,7 +15,7 @@ while True:
     check_process = subprocess.Popen(["git", "status", "-uno"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     check, error = check_process.communicate()
     
-    if "behind" not in check:
+    if "behind" not in str(check):
         print("No update available")
         time.sleep(WAIT_TIME)
         continue
