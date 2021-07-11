@@ -24,6 +24,7 @@ while True:
         print("Update available")
         upgrade_process = subprocess.Popen(["git", "pull"])
         upgrade_process.communicate()
+        time.sleep(10.0)
         with open("selfmanipulator.py", "r") as file:
             print(file.readlines())
         os.execv(sys.executable, ['python'] + sys.argv)
