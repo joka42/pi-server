@@ -17,7 +17,7 @@ while True:
         print("Error: " + err)
         time.sleep(WAIT_TIME)
         continue
-    lines = out.split("\n")
+    lines = out.splitlines(True)
     if len(lines) > 1:
         print("Update available")
         print(out)
