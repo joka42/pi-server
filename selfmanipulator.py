@@ -8,7 +8,7 @@ WAIT_TIME = 5.0
 
 
 while True:
-    update_process = subprocess.Popen(["git", "remote update"])
+    update_process = subprocess.Popen("git remote update")
     
     update_process.communicate()
     if update_process.stderr:
