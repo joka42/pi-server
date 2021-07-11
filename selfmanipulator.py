@@ -18,6 +18,10 @@ while True:
         time.sleep(WAIT_TIME)
         continue
     
+    if len(update_process.stdout) > 1:
+        print("Update available")
+        print(update_process.stdout)
+
     check_process = subprocess.Popen(["git", "status", "-uno"])
     if check_process.stderr:
         print("Error: " + check_process.stderr)
