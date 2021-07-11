@@ -10,24 +10,19 @@ VERSION = 0.1
 while True:
     print("VERSION:", VERSION)
 
-    update_process = subprocess.Popen(["git", "remote", "update"])
+    update_process = subprocess.Popen(["git", "remote", "update"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     
-    update_process.communicate()
-    if update_process.stderr:
-        print("Error: " + update_process.stderr)
+    out, err= update_process.communicate()
+    if len(err):
+        print("Error: " + err)
         time.sleep(WAIT_TIME)
         continue
     
-    if len(update_process.stdout) > 1:
+    if len(out) > 1:
         print("Update available")
         print(update_process.stdout)
-
-    check_process = subprocess.Popen(["git", "status", "-uno"])
-    if check_process.stderr:
-        print("Error: " + check_process.stderr)
-        time.sleep(WAIT_TIME)
-        continue
-    print(check_process.stdout)
+    else:
+        print("No update available")
     time.sleep(WAIT_TIME)
     
 
