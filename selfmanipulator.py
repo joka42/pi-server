@@ -5,7 +5,7 @@ import subprocess
 
 
 WAIT_TIME = 5.0
-VERSION = "0.3.3"
+VERSION = "0.3.4"
 
 def upgrade():
     upgrade_process = subprocess.Popen(["git", "pull"])
