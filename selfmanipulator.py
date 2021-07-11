@@ -14,20 +14,18 @@ while True:
     
     out, err = update_process.communicate()
 
-    print("out")
-    print(out)
-    print("err")
-    print(err)
-    
     lines = out.splitlines(True)
-    print(lines)
-    if len(str(lines)) > 1:
+
+    for line in lines:
+        print(line)
+    
+    if len(lines) > 2:
         print("Update available")
         upgrade_process = subprocess.Popen(["git", "pull"])
         upgrade_process.communicate()
         
-        with open("selfmanipulator.py", "r") as file:
-            print(file.readlines())
+        #with open("selfmanipulator.py", "r") as file:
+            #print(file.readlines())
         os.execv(sys.executable, ['python'] + sys.argv)
         exit()
         
