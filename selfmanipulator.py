@@ -10,6 +10,7 @@ VERSION = "0.3.1"
 def upgrade():
     upgrade_process = subprocess.Popen(["git", "pull"])
     upgrade_process.communicate()
+    return True
 
 
 while True:
@@ -27,9 +28,11 @@ while True:
     lines = out.splitlines(True)
     if len(lines) > 1:
         print("Update available")
-        upgrade()
-        os.execv(sys.executable, ['python'] + sys.argv)
-        exit()
+        if upgrade():
+            os.execv(sys.executable, ['python'] + sys.argv)
+            exit()
+        else:
+            print("Fail")
         
     else:
         print("No update available")
